@@ -46,7 +46,7 @@ namespace Microsoft.ML.Probabilistic.Tests
             //LoopReversalTransform.debug = true;
             //LocalAllocationTransform.debug = true;
             //LivenessAnalysisTransform.debug = true;
-            //IterativeProcessTransform.debug = true;
+            IterativeProcessTransform.debug = true;
             //ForwardBackwardTransform.debug = true;
             //MessageTransform.UseMessageAnalysis = false;
             //PruningTransform.PruneUniformStmts = false;

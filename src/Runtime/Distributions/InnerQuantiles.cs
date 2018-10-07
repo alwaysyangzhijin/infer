@@ -23,16 +23,17 @@ namespace Microsoft.ML.Probabilistic.Distributions
         /// <summary>
         /// Gaussian approximation of the lower tail.
         /// </summary>
-        Gaussian lowerGaussian;
+        private readonly Gaussian lowerGaussian;
         /// <summary>
         /// Gaussian approximation of the upper tail.
         /// </summary>
-        Gaussian upperGaussian;
+        private readonly Gaussian upperGaussian;
 
         private InnerQuantiles(int quantileCount)
         {
             this.quantiles = new double[quantileCount];
-            CacheGaussians();
+            lowerGaussian = GetLowerGaussian(quantiles);
+            upperGaussian = GetUpperGaussian(quantiles);
         }
 
         public InnerQuantiles(int quantileCount, CanGetQuantile canGetQuantile) : this(quantileCount)
@@ -41,7 +42,8 @@ namespace Microsoft.ML.Probabilistic.Distributions
             {
                 this.quantiles[i] = canGetQuantile.GetQuantile((i + 1.0) / (quantileCount + 1.0));
             }
-            CacheGaussians();
+            lowerGaussian = GetLowerGaussian(quantiles);
+            upperGaussian = GetUpperGaussian(quantiles);
         }
 
         public override string ToString()
@@ -123,12 +125,6 @@ namespace Microsoft.ML.Probabilistic.Distributions
             // quantiles[index-1] < x < quantiles[index]
             double frac = (x - quantiles[index - 1]) / (quantiles[index] - quantiles[index - 1]);
             return (index + frac) / (n + 1);
-        }
-
-        private void CacheGaussians()
-        {
-            lowerGaussian = GetLowerGaussian(quantiles);
-            upperGaussian = GetUpperGaussian(quantiles);
         }
 
         private static Gaussian GetLowerGaussian(IReadOnlyList<double> quantiles)
