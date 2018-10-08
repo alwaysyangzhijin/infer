@@ -436,10 +436,12 @@ namespace Microsoft.ML.Probabilistic.Tests
             }
         }
 
+        /// <summary>
+        /// Fails with the wrong error message.
+        /// </summary>
         [Fact]
         [Trait("Category", "OpenBug")]
         public void DefinitionBeforeDeclarationError()
-
         {
             Assert.Throws<CompilationFailedException>(() =>
             {
