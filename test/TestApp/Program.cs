@@ -54,8 +54,8 @@ namespace TestApp
             InferenceEngine.DefaultEngine.Compiler.AddComments = false;
             //InferenceEngine.DefaultEngine.Compiler.CompilerChoice = Microsoft.ML.Probabilistic.Compiler.CompilerChoice.Roslyn;
             //InferenceEngine.DefaultEngine.Compiler.GenerateInMemory = false;
-            //InferenceEngine.DefaultEngine.Compiler.WriteSourceFiles = false;
-            InferenceEngine.DefaultEngine.Compiler.OptimiseInferenceCode = false;
+            InferenceEngine.DefaultEngine.Compiler.WriteSourceFiles = true;
+            //InferenceEngine.DefaultEngine.Compiler.OptimiseInferenceCode = false;
             //InferenceEngine.DefaultEngine.Compiler.FreeMemory = false;
             //InferenceEngine.DefaultEngine.Compiler.ReturnCopies = false;
             //InferenceEngine.DefaultEngine.Compiler.UnrollLoops = true;
@@ -79,8 +79,6 @@ namespace TestApp
 
             Stopwatch watch = new Stopwatch();
             watch.Start();
-
-            new SerialTests().EndCoupledChainsTest2();
 
             if (false)
             {
