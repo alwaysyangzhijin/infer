@@ -576,6 +576,7 @@ namespace Microsoft.ML.Probabilistic.Tests
             /// </summary>
             /// <param name="x">Factor argument.</param>
             /// <returns>Nothing since an exception is always thrown.</returns>
+            [Hidden]
             public static bool Factor(bool x)
             {
                 throw new NotImplementedException();
