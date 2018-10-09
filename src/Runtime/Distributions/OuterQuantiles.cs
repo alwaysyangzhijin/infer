@@ -26,13 +26,9 @@ namespace Microsoft.ML.Probabilistic.Distributions
             this.quantiles = quantiles;
         }
 
-        private OuterQuantiles(int quantileCount)
+        public OuterQuantiles(int quantileCount, CanGetQuantile canGetQuantile)
         {
             this.quantiles = new double[quantileCount];
-        }
-
-        public OuterQuantiles(int quantileCount, CanGetQuantile canGetQuantile) : this(quantileCount)
-        {
             for (int i = 0; i < quantileCount; i++)
             {
                 this.quantiles[i] = canGetQuantile.GetQuantile(i / (quantileCount - 1.0));

@@ -560,7 +560,6 @@ namespace Microsoft.ML.Probabilistic.Tests
                 var engine = new InferenceEngine();
                 engine.Compiler.RequiredQuality = QualityBand.Unknown;
                 engine.Infer(Variable<bool>.Factor(MissingBufferMethodsFailureFactorAndOp.Factor, Variable.Bernoulli(0.5)));
-
             });
         }
 

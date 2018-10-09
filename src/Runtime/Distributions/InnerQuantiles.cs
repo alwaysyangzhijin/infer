@@ -29,15 +29,16 @@ namespace Microsoft.ML.Probabilistic.Distributions
         /// </summary>
         private readonly Gaussian upperGaussian;
 
-        private InnerQuantiles(int quantileCount)
+        public InnerQuantiles(double[] quantiles)
         {
-            this.quantiles = new double[quantileCount];
+            this.quantiles = quantiles;
             lowerGaussian = GetLowerGaussian(quantiles);
             upperGaussian = GetUpperGaussian(quantiles);
         }
 
-        public InnerQuantiles(int quantileCount, CanGetQuantile canGetQuantile) : this(quantileCount)
+        public InnerQuantiles(int quantileCount, CanGetQuantile canGetQuantile)
         {
+            this.quantiles = new double[quantileCount];
             for (int i = 0; i < quantileCount; i++)
             {
                 this.quantiles[i] = canGetQuantile.GetQuantile((i + 1.0) / (quantileCount + 1.0));
